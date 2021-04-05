@@ -1,23 +1,24 @@
 package com.anncode.offersandcoupons.model
 
 import android.util.Log
-import com.anncode.offersandcoupons.R
+import androidx.lifecycle.MutableLiveData
 import com.anncode.offersandcoupons.model.interfaces.ICouponRepository
 import com.anncode.offersandcoupons.model.pojos.Coupon
-import com.anncode.offersandcoupons.presenters.interfaces.ICouponsPresenter
-import com.anncode.offersandcoupons.views.RecyclerCouponsAdapter
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CouponRepository( val iCouponsPresenter: ICouponsPresenter): ICouponRepository {
+class CouponRepository: ICouponRepository {
 
     private val TAG: String = "CouponRepository"
+    private var coupons = MutableLiveData<List<Coupon>>()
 
-    override fun getCouponsAPI() {
-        var coupons: ArrayList<Coupon> = ArrayList<Coupon>()
+    override fun getCoupons(): MutableLiveData<List<Coupon>> = coupons
+
+    override fun callCouponsAPI() {
+        var couponsList: ArrayList<Coupon> = ArrayList<Coupon>()
         val connection = Connection()
         val apiService = connection.getClientService()
         val call = apiService.getCoupons()
@@ -33,10 +34,11 @@ class CouponRepository( val iCouponsPresenter: ICouponsPresenter): ICouponReposi
                 offersJsonArray?.forEach { jsonElement: JsonElement ->
                     var jsonObject = jsonElement.asJsonObject
                     var coupon = Coupon(jsonObject)
-                    coupons.add(coupon)
+                    couponsList.add(coupon)
                 }
 
-                iCouponsPresenter.showCoupons(coupons)
+                coupons.value = couponsList
+
             }
         })
     }
