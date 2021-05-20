@@ -30,4 +30,9 @@ class CouponViewModel: ViewModel() {
         return recyclerCouponsAdapter!!
     }
 
+    fun getCouponAt(position: Int): Coupon {
+        var coupons = couponObservable.getCoupons().value
+        return coupons!![position]
+    }
+
 }

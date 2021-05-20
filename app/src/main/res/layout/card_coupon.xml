@@ -28,7 +28,7 @@
                 android:clipToPadding="false">
 
             <TextView
-                    android:text="TextView"
+                    android:text="@{model.getCouponAt(position).title}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/tvTitle"
@@ -58,7 +58,7 @@
                     android:layout_marginStart="24dp" />
 
             <TextView
-                    android:text="TextView"
+                    android:text="@{model.getCouponAt(position).descriptionShort}"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:id="@+id/tvDescriptionShort"
@@ -71,7 +71,7 @@
                     app:layout_constraintHorizontal_bias="0.0" />
 
             <TextView
-                    android:text="TextView"
+                    android:text="@{model.getCouponAt(position).endDate}"
                     android:layout_width="wrap_content"
                     android:layout_height="37dp"
                     android:id="@+id/tvDate"
@@ -93,7 +93,7 @@
                     android:textSize="12sp" />
 
             <TextView
-                    android:text="TextView"
+                    android:text="@{model.getCouponAt(position).category}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/tvCategory"
