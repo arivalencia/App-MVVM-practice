@@ -1,11 +1,14 @@
 package com.anncode.offersandcoupons.model.pojos
 
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import com.google.gson.JsonObject
-import java.lang.Exception
+import com.squareup.picasso.Picasso
+import java.io.Serializable
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.io.Serializable
 import java.util.*
+
 
 class Coupon(couponJson: JsonObject?) : Serializable {
 
@@ -73,4 +76,5 @@ class Coupon(couponJson: JsonObject?) : Serializable {
 
         return newString
     }
+
 }

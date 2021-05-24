@@ -6,14 +6,11 @@ import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.RecyclerView
 import com.anncode.offersandcoupons.R
 import com.anncode.offersandcoupons.viewmodel.CouponViewModel
-import kotlinx.android.synthetic.main.activity_main.view.*
 
 class MainActivity : AppCompatActivity() {
 
-    private var rvCoupons: RecyclerView? = null
     private lateinit var couponsViewModel: CouponViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,8 +19,6 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         setUpBindings(savedInstanceState)
-        //rvCoupons = findViewById(R.id.rvCoupons)
-        //rvCoupons?.layoutManager = LinearLayoutManager(this)
 
     }
 
@@ -32,9 +27,10 @@ class MainActivity : AppCompatActivity() {
         val activityMainBinding: com.anncode.offersandcoupons.databinding.ActivityMainBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-         couponsViewModel = ViewModelProviders.of(this).get(CouponViewModel::class.java)
+        couponsViewModel = ViewModelProviders.of(this).get(CouponViewModel::class.java)
 
         activityMainBinding.model = couponsViewModel
+
         setUpListUpdate()
 
     }
